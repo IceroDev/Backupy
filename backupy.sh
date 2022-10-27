@@ -5,8 +5,7 @@ fileName="name-${timecode}"
 dataPath="/path/to/data"
 backupPath="/path/to/external/drive"
 deletingPolicy=44640 #In Minutes
-AES129Passwd="MyKey"
-discordWebhook="https://discordapp.com/api/webhooks/XXXXX"
+AES128Passwd="MyKey"
 #################################
 
 mkdir /tmpbackup
@@ -22,7 +21,7 @@ rclone cleanup gdrive:
 
 sleep 5
 
-cp ${fileName}.tar.gz ${backupPath} || curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\"content\": \"@everyone :x: A backup failed on the server\"}" ${discordWebhook}
+cp ${fileName}.tar.gz ${backupPath} || echo "${timecode} : Error while backuping to external drive." > /var/log/backupy.log
 
 sleep 5
 
