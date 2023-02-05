@@ -14,7 +14,7 @@ cd /tmpbackup
 tar -czf ${fileName}.clear.tar.gz ${dataPath}/*
 
 
-openssl enc -aes128 -pbkdf2 -e -in ${fileName}.clear.tar.gz -out ${fileName}.tar.gz -pass pass:${AES129Passwd}
+openssl enc -aes128 -pbkdf2 -e -in ${fileName}.clear.tar.gz -out ${fileName}.tar.gz -pass pass:${AES128Passwd}
 
 find ${backupPath} -mindepth 1 -mmin +${deletingPolicy} -delete
 rclone cleanup gdrive:
