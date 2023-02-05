@@ -5,7 +5,7 @@ fileName="name-${timecode}"
 dataPath="/path/to/data"
 backupPath="/path/to/external/drive"
 deletingPolicy=44640 #In Minutes
-AES128Passwd="MyKey"
+AES256Passwd=""
 #################################
 
 mkdir /tmpbackup
@@ -14,7 +14,7 @@ cd /tmpbackup
 tar -czf ${fileName}.clear.tar.gz ${dataPath}/*
 
 
-openssl enc -aes128 -pbkdf2 -e -in ${fileName}.clear.tar.gz -out ${fileName}.tar.gz -pass pass:${AES129Passwd}
+openssl enc -aes256 -pbkdf2 -e -in ${fileName}.clear.tar.gz -out ${fileName}.tar.gz -pass pass:${AES256Passwd}
 
 find ${backupPath} -mindepth 1 -mmin +${deletingPolicy} -delete
 rclone cleanup gdrive:
